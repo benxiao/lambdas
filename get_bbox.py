@@ -92,12 +92,11 @@ if __name__ == '__main__':
     lst = gray_img.tolist()
     bs = bboxes(gray_img, gray_img.shape)
     bs = bbox_filter_size(bs, minimum_size=20)
-    bs = [b.scale(0.2, 0, gray_img.shape) for b in bs]
+    bs = [b.scale(0.2, 0.1, gray_img.shape) for b in bs]
     for b in bs:
-        p0, p1 = b.to_opencv_format()
-        print(p0, p1)
-        cv2.rectangle(img, p0, p1, (255, 0, 0), 1)
+        cv2.rectangle(img, *(b.to_opencv_format()), (255, 0, 0), 1)
+
+
 
     plt.imshow(img)
     plt.show()
-    # print(bbox_area(((74,70), (74, 70))))
