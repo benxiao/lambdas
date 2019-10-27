@@ -1,6 +1,6 @@
 import cv2
 import matplotlib.pyplot as plt
-from get_bbox import *
+from bbox.get_bbox import *
 
 # print(bfs(square, (5,5), (0, 2)))
 img = cv2.imread("gray.jpg")

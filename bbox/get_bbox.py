@@ -1,7 +1,7 @@
 from collections import deque
 from typing import *
 import numpy as np
-from bbox import BoundingBox
+from bbox.bbox import BoundingBox
 
 Point = Tuple[int, int]
 TopLeft, BottomRight = Point, Point
