@@ -55,6 +55,21 @@ class BoundingBox:
         return BoundingBox((int(top_left_x), int(top_left_y)),
                            (int(bottom_right_x), int(bottom_right_y)))
 
+    def merge(self, other):
+        top_left0 = self.get_top_left()
+        top_left1 = other.get_top_left()
+        bottom_right0 = self.get_bottom_right()
+        bottom_right1 = other.get_bottom_right()
+        new_top_left = (
+            min(top_left0[X], top_left1[X]),
+            min(top_left0[Y], top_left1[Y])
+        )
+        new_bottom_right = (
+            max(bottom_right0[X], bottom_right1[X]),
+            max(bottom_right0[Y], bottom_right1[Y])
+        )
+        return BoundingBox(new_top_left, new_bottom_right)
+
     def overlap(self, other):
         a, b = self, other
         # a always stays on the left
