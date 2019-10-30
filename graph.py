@@ -4,30 +4,30 @@ from bitarray import bitarray
 
 class BiGraph(object):
     def __init__(self, n):
-        self._nodes = [[] for _ in range(n)]
+        self._adjlist = [[] for _ in range(n)]
         self._n_bonds = 0
 
     def clear(self):
-        for n in self._nodes:
+        for n in self._adjlist:
             n.clear()
         self._n_bonds = 0
 
     def neighbours(self, i: int):
-        return self._nodes[i]
+        return self._adjlist[i]
 
     def __len__(self):
-        return len(self._nodes)
+        return len(self._adjlist)
 
     def n_bonds(self):
         return self._n_bonds
 
     def bonded(self, i, j):
-        return j in self._nodes[i] and i in self._nodes[j]
+        return j in self._adjlist[i] and i in self._adjlist[j]
 
     def bond(self, i, j):
         if not self.bonded(i, j):
-            self._nodes[i].append(j)
-            self._nodes[j].append(i)
+            self._adjlist[i].append(j)
+            self._adjlist[j].append(i)
             self._n_bonds += 1
             return
         print(f"[warn] repeated bond with ({i}, {j})")
